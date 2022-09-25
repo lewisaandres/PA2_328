@@ -52,9 +52,9 @@ class Solution:
 		# get the start time
 		st = time.process_time()
 		
-    	# your insertion sort algorithm comes here ...
+    	# your merge sort algorithm comes here ...
 
-    	# end of insertion sort
+    	# end of merge sort
 		
 		et = time.process_time()
 		res = et - st
@@ -70,6 +70,6 @@ if __name__ == '__main__':
 	seed = sys.argv[3]
 	
 	obj = Solution()
-	ret = obj.pa2_insertionsort(input_type, elements_count, seed)
+	ret = obj.pa2_mergesort(input_type, elements_count, seed)
 	print(ret)
 

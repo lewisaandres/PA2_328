@@ -7,8 +7,9 @@ assignment:PA2
 import sys
 import random
 import time
+from tkinter.messagebox import QUESTION
 
-class Solution:dfd
+class Solution:
 	
 	#This function returns a descending sorted array.
 	def function_a (self, elements_count: int) -> list:
@@ -28,7 +29,7 @@ class Solution:dfd
 		output = []
 		random.seed(seed)
 		for i in range(0,elements_count+1):
-			output.append(random.randint(1,1000000))
+			output.append(random.randint(1,10))
 
 		return output
 
@@ -41,8 +42,22 @@ class Solution:dfd
 			output = self.function_b(elements_count)
 		if 	input_type == "c":
 			output = self.function_c(elements_count, seed)
-		return output	
+		return output
 
+	#Lewis Andres insertionSort algo. Used Professor Fahim's powerpoint notes for reference 
+	def insertionSort(queryList: list, n: int) -> list:
+		for i in range(n):
+			key = queryList[i]
+			j = i - 1
+			
+			while (j >= 0 and queryList[j] > key):
+				queryList[j+1] = queryList[j]
+				j = j - 1
+			
+			queryList[j+1] = key 
+		return queryList
+
+			
 	def pa2_bubblesort (self, input_type: str, elements_count: int, seed: int) -> list:
 		output = []
 		query_list = self.select_input(input_type, elements_count, seed)
@@ -52,9 +67,11 @@ class Solution:dfd
 		# get the start time
 		st = time.process_time()
 		
-    	# your merge sort algorithm comes here ...
+    	# your insertion sort algorithm comes here ...
+		#LewisA's insertionSort algo function called here
+		Solution.insertionSort(query_list, n) 
 
-    	# end of merge sort
+    	# end of insertion sort
 		
 		et = time.process_time()
 		res = et - st
@@ -70,6 +87,6 @@ if __name__ == '__main__':
 	seed = sys.argv[3]
 	
 	obj = Solution()
-	ret = obj.pa2_mergesort(input_type, elements_count, seed)
+	ret = obj.pa2_bubblesort(input_type, elements_count, seed)
 	print(ret)
 
